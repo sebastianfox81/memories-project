@@ -1,8 +1,10 @@
 const router = require('express').Router();
 
+const { getAllPosts } = require('../controllers/posts.controller')
+
 router.route('/')
   .post()
-  .get()
+  .get(getAllPosts)
 
 router.route('/:id')
   .get()
