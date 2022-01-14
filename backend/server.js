@@ -7,6 +7,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const postRoutes = require('./routes/posts')
+
+app.use('/posts', postRoutes)
+
 const port = process.env.PORT || 5000
 
 app.listen(port, () => {
