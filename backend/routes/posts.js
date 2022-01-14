@@ -1,9 +1,9 @@
 const router = require('express').Router();
 
-const { getAllPosts } = require('../controllers/posts.controller')
+const { getAllPosts, createPost } = require('../controllers/posts.controller')
 
 router.route('/')
-  .post()
+  .post(createPost)
   .get(getAllPosts)
 
 router.route('/:id')
