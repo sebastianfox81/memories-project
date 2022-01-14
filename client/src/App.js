@@ -3,6 +3,8 @@ import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import memories from './images/img1.png'
 
 // Components
+import Form from './components/Form/Form.js'
+import Posts from './components/Posts/Posts.js'
 
 function App() {
   return (
@@ -17,10 +19,10 @@ function App() {
         <Container>
           <Grid container justify="space-between" aligItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
-                Posts
+                <Posts />
             </Grid>
             <Grid item xs={12} sm={4}>
-              Form
+              <Form />
             </Grid>
           </Grid>
         </Container>
