@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import useStyles from "./styles";
 import FileBase from 'react-file-base64';
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
@@ -20,13 +21,19 @@ const Form = () => {
     })
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:5000/api/posts', postData)
+    .catch(err => console.log(err))
+  }
+
   const clear = () => {
 
   }
 
   return (
     <Paper className={classes.paper}>
-      <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}>
+      <form onSubmit={handleSubmit} autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}>
         <Typography variant="h6">Creating Memory</Typography>
         <TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={handleChange} />
         <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={handleChange} />
