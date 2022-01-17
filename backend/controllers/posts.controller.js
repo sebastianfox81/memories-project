@@ -12,12 +12,12 @@ postsCtrl.getAllPosts = async (req, res) => {
 }
 // CREATE NEW POST
 postsCtrl.createPost = async (req, res ) => {
-  console.log(req.file)
+  // console.log(req.file)
   const { title, msg, creator, tags, likes, createdAt } = req.body;
-  const selectedFile = req.file.path
-  
+  // const selectedFile = req.file.path
+
   const newPost = new Post({
-    title, msg, creator, tags, selectedFile, likes, createdAt
+    title, msg, creator, tags, likes, createdAt
   });
 
   try {

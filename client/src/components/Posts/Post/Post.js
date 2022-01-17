@@ -8,6 +8,7 @@ import moment from 'moment';
 
 
 const Post = ({ post }) => {
+
   const classes = useStyles();
 
   const handleClick = () => {
@@ -36,7 +37,7 @@ const Post = ({ post }) => {
           </div>
           <CardContent>
           <Typography className={classes.title} variant="h5" gutterBottom>
-              {post.message}
+              {post.msg}
             </Typography>
           </CardContent>
           <CardActions className={classes.cardActions}>

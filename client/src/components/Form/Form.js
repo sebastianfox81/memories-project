@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import axios from 'axios';
+// import axios from 'axios';
 import useStyles from "./styles";
 import FileBase from 'react-file-base64';
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 
-const Form = () => {
+const Form = ({ addPost }) => {
   const [ postData, setPostData ] = useState({
     creator: '',
     title: '',
@@ -23,8 +23,7 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/posts', postData)
-    .catch(err => console.log(err))
+    addPost(postData)
   }
 
   const clear = () => {

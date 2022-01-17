@@ -13,6 +13,13 @@ const App = () => {
   // const dispatch = useDispatch();
   const [ posts, setPosts ] = useState([])
 
+  const addPost = (post) => {
+    axios.post('http://localhost:5000/api/posts', post)
+    .catch(err => console.log(err))
+    getAllPosts();
+
+  }
+
   useEffect(() => {
     getAllPosts();
   }, [])
@@ -38,7 +45,7 @@ const getAllPosts = () => {
                 <Posts posts={posts}/>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Form />
+              <Form addPost={addPost}/>
             </Grid>
           </Grid>
         </Container>
