@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-const { getAllPosts, createPost, getOnePost, updatePost, removePost } = require('../controllers/posts.controller')
+const { getAllPosts, createPost, getOnePost, updatePost, removePost, likePost } = require('../controllers/posts.controller')
 
 router.route('/')
   .get(getAllPosts);
@@ -23,5 +23,7 @@ router.route('/:id')
   .get(getOnePost)
   .put(updatePost)
   .delete(removePost)
+
+router.patch('/likepost/:id', likePost)
 
 module.exports = router;

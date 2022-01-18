@@ -48,6 +48,18 @@ postsCtrl.updatePost = async (req, res) => {
     res.status(400).json({ msg: err.message})
   }
 }
+
+// LIKE A POST
+postsCtrl.likePost = async (req, res) => {
+
+  const { id } = req.params;
+
+  const post = await Post.findById(id)
+  const updatedPost = await Post.findByIdAndUpdate(id , { likes: post.likes + 1}, { new: true });
+
+  res.json(updatedPost)
+}
+
 // REMOVE POST
 postsCtrl.removePost = async (req, res) => {
   try {
