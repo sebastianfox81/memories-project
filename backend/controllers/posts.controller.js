@@ -38,11 +38,12 @@ postsCtrl.getOnePost = async (req, res) => {
 }
 // UPDATE POST
 postsCtrl.updatePost = async (req, res) => {
-  const { title, msg, creator, tags, selectedFile, likes, createdAt } = req.body;
-  const updatedNote = { title, msg, creator, tags, selectedFile, likes, createdAt }
+  const { title, msg, creator, tags, likes } = req.body;
+  const updatedNote = { title, msg, creator, tags, likes }
   try {
-    await Post.findByIdAndUpdate(req.params.id, updatedNote);
-    res.status(200).json({ msg: 'Note successfully updated!'})
+    const updatedPost = await Post.findByIdAndUpdate(req.params.id, updatedNote, { new: true });
+    res.status(200).json({ msg: 'Post successfully updated!'})
+    console.log(updatedPost)
   } catch (err) {
     res.status(400).json({ msg: err.message})
   }

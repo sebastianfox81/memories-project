@@ -8,9 +8,9 @@ const postSchema = new Schema({
     creator: { type: String, unique: false},
     tags: { type: [String]},
     selectedFile: { type: String },
-    likes: { type: Number, default: 0},
-    createdAt: { type: Date, default: new Date() }
-}, {
+    likes: { type: Number, default: 0}
+},
+{
   timestamps: true
 })
 

@@ -11,18 +11,32 @@ import Posts from './components/Posts/Posts.js';
 const App = () => {
   const classes = useStyles();
   // const dispatch = useDispatch();
-  const [ posts, setPosts ] = useState([])
-
-  const addPost = (post) => {
-    axios.post('http://localhost:5000/api/posts', post)
-    .catch(err => console.log(err))
-    getAllPosts();
-
-  }
+  const [ posts, setPosts ] = useState([]);
+  const [ currentId, setCurrentId ] = useState(null)
 
   useEffect(() => {
     getAllPosts();
   }, [])
+
+  const addPost = (post) => {
+    axios.post('http://localhost:5000/api/posts', post)
+    .then(res => getAllPosts(), console.log(post))
+    .catch(err => console.log(err))
+  }
+
+  const updatePost = (id, updatedPost) => {
+    axios.put('http://localhost:5000/api/posts/' + id, updatedPost)
+    .then(res => getAllPosts())
+    .catch(err => console.log(err))
+  }
+
+  const deletePost = (id) => {
+    axios.delete('http://localhost:5000/api/posts/' + id)
+    .then(res => getAllPosts())
+    .catch(err => console.log(err));
+
+  }
+
 
 const getAllPosts = () => {
   axios.get('http://localhost:5000/api/posts')
@@ -42,10 +56,16 @@ const getAllPosts = () => {
         <Container>
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
-                <Posts posts={posts}/>
+                <Posts posts={posts} deletePost={deletePost} setCurrentId={setCurrentId}/>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Form addPost={addPost}/>
+              <Form
+                addPost={addPost}
+                updatePost={updatePost}
+                currentId={currentId}
+                setCurrentId={setCurrentId}
+                posts={posts}
+                />
             </Grid>
           </Grid>
         </Container>
